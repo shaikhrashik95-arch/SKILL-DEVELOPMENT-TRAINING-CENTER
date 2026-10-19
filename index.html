@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Development Training Center</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+body {
+  font-family: Georgia, serif;
+  background: #edf1f5;
+  text-align: center;
+  padding: 15px;
+}
+.certificate {
+  max-width: 750px;
+  margin: auto;
+  padding: 25px;
+  background: white;
+  border: 8px double #173e69;
+  box-sizing: border-box;
+}
+h1 { color: #173e69; }
+.name {
+  font-size: 27px;
+  font-weight: bold;
+  color: #183d66;
+}
+.sample {
+  color: #c00000;
+  font-weight: bold;
+  border: 2px solid #c00000;
+  display: inline-block;
+  padding: 6px 12px;
+}
+#qrcode {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+button {
+  padding: 12px 20px;
+  margin: 8px;
+  background: #173e69;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+}
+@media print {
+  body { background: white; }
+  button { display: none; }
+  .certificate { border: 6px double #173e69; }
+}
+</style>
+</head>
+<body>
+
+<div class="certificate">
+  <p class="sample">SAMPLE — NOT AN OFFICIAL CERTIFICATE</p>
+
+  <h1>SKILL DEVELOPMENT<br>TRAINING CENTER</h1>
+  <h2>CERTIFICATE OF TRAINING</h2>
+
+  <p>This sample certificate is presented to</p>
+
+  <div class="name">Rashikul Rahaman Shaikh</div>
+
+  <p>For completing the training course in</p>
+  <h2>ELECTRICIAN</h2>
+
+  <p><b>Experience / Training Duration:</b> 2 Years</p>
+  <p><b>Certificate ID:</b> SAMPLE-2026-001</p>
+
+  <hr>
+
+  <h3>Scan QR Code to View Sample Details</h3>
+  <div id="qrcode"></div>
+  <p id="status">QR Code তৈরি হচ্ছে...</p>
+
+  <p style="font-size:12px;color:#c00000">
+    SAMPLE ONLY — This is a demonstration, not proof of qualification or experience.
+  </p>
+</div>
+
+<button onclick="window.print()">Print / Save PDF</button>
+<button onclick="makeQR()">Generate QR Code</button>
+
+<script>
+function makeQR() {
+  const qr = document.getElementById("qrcode");
+  const status = document.getElementById("status");
+  qr.innerHTML = "";
+
+  if (location.protocol === "file:") {
+    status.textContent =
+      "অনলাইনে QR কাজ করাতে আগে GitHub Pages-এ এই ফাইল প্রকাশ করুন।";
+    return;
+  }
+
+  new QRCode(qr, {
+    text: location.href,
+    width: 180,
+    height: 180,
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  status.textContent =
+    "এই QR Code স্ক্যান করলে এই অনলাইন SAMPLE পেজ খুলবে।";
+}
+
+if (location.protocol !== "file:") {
+  makeQR();
+} else {
+  document.getElementById("status").textContent =
+    "প্রথমে GitHub Pages-এ আপলোড করুন।";
+}
+</script>
+
+</body>
+</html>
